@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rivals Nexus - Login</title>
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+<body>
+    <!-- Language Selector -->
+    <div class="lang-selector">
+        <select id="languageSelect">
+            <option value="en">EN</option>
+            <option value="es">ES</option>
+            <option value="fr">FR</option>
+        </select>
+    </div>
+
+    <!-- Modal Container -->
+    <div class="login-modal-container">
+        <div class="login-modal">
+            <!-- Close Button -->
+            <button class="modal-close" aria-label="Close">&times;</button>
+
+            <!-- Split Screen Layout -->
+            <div class="modal-content">
+                <!-- Left Section: Registration -->
+                <div class="modal-section registration-section">
+                    <div class="section-header">
+                        <div class="logo-container">
+                            <div class="logo-icon">R</div>
+                            <div class="logo-text">
+                                <span class="logo-brand">Account</span>
+                                <span class="logo-name">Rivals Nexus</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2 class="section-title">Registration</h2>
+
+                    <form id="registrationForm" class="auth-form">
+                        <div class="form-group">
+                            <input type="email" id="reg-email" placeholder="E-mail" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="reg-nickname" placeholder="Nickname" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="reg-password" placeholder="Password" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="reg-password-repeat" placeholder="Repeat the password" required>
+                        </div>
+                        <div class="form-group captcha-group">
+                            <input type="text" id="reg-captcha" placeholder="Enter the code" required>
+                            <div class="captcha-display">
+                                <span id="captcha-text">694</span>
+                                <span class="captcha-lang">/en</span>
+                                <button type="button" class="captcha-refresh" id="refreshCaptcha" aria-label="Refresh captcha">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                                        <path d="M21 3v5h-5"/>
+                                        <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                                        <path d="M3 21v-5h5"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="reg-terms" required>
+                                <span>I accept <a href="#" class="link">Terms of Service</a> and <a href="#" class="link">Privacy Policy</a>.</span>
+                            </label>
+                        </div>
+                        <button type="submit" class="submit-btn" id="reg-submit-btn" disabled>CREATE AN ACCOUNT</button>
+                    </form>
+
+                    <div class="switch-auth">
+                        <span>Already got a Rivals Nexus account?</span>
+                        <button class="switch-btn" id="switchToLogin">LOG IN</button>
+                    </div>
+                </div>
+
+                <!-- Right Section: Login -->
+                <div class="modal-section login-section">
+                    <div class="section-header">
+                        <div class="brand-logo">
+                            <div class="brand-icon">R</div>
+                            <div class="brand-text">RIVALS NEXUS</div>
+                        </div>
+                    </div>
+
+                    <div class="login-content">
+                        <p class="login-description">Already played Rivals Nexus? Save your progress!</p>
+                        <button class="social-login-btn" id="artstormLogin">
+                            <div class="social-icon">A</div>
+                            <span>Log in via Artstorm</span>
+                        </button>
+                        <div class="expandable-section">
+                            <button class="expand-btn" id="expandLink">
+                                <span>Played before but haven't linked an email?</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M6 9l6 6 6-6"/>
+                                </svg>
+                            </button>
+                            <div class="expand-content" id="expandContent" hidden>
+                                <form id="loginForm" class="auth-form">
+                                    <div class="form-group">
+                                        <input type="email" id="login-email" placeholder="E-mail" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" id="login-password" placeholder="Password" required>
+                                    </div>
+                                    <button type="submit" class="submit-btn">LOG IN</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Message Display -->
+    <div id="errorMessage" class="error-message" hidden></div>
+
+    <script src="/public/script.js"></script>
+</body>
+</html>

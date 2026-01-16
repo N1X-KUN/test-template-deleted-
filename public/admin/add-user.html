@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add User</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .admin-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .admin-container form {
+            display: flex;
+            flex-direction: column;
+        }
+        .admin-container input {
+            margin-bottom: 15px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #28a745;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <a href="index.html" class="back-link">← Back to Admin Panel</a>
+        <h2>Add User</h2>
+        <form id="addUserForm">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Add User</button>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+

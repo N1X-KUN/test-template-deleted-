@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0f0f16" />
+  <title>Hero Page - Rivals</title>
+  <link rel="icon" href="Images/Rival.png" type="image/x-icon" />
+  <link rel="stylesheet" href="Rivals.css" />
+</head>
+<body>
+  <div id="page-loader" class="page-loader">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <img src="Images/Icon Logo.svg" alt="Rivals" />
+      </div>
+      <div class="loader-text">
+        RIVALING<span class="loader-dots"></span>
+      </div>
+      <div class="loader-progress">
+        <div class="loader-progress-bar"></div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="sr-only" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="Rivals.html" aria-label="Rivals Home">
+        <img src="Images/Icon Logo.svg" alt="Brand" style="height:40px;width:auto" />
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="Patch.html">Patch Notes</a>
+        <a href="Hero.html" aria-current="page">Rival Cards</a>
+        <a href="Community.html">Spawn Chats</a>
+        <a href="#" aria-label="Log in" title="Log in" class="login-icon" id="login-btn">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <a class="cta" data-magnetic href="Videos/RivalsLauncher.mp4" download="MarvelRivals_Gameplay.mp4"><span class="shine" aria-hidden="true"></span>Play Now</a>
+      </nav>
+      <button class="hamburger" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>  
+    <div class="drawer" id="mobile-drawer" hidden>
+      <div class="drawer-panel" role="dialog" aria-label="Mobile Menu">
+        <a href="Patch.html">Patch Notes</a>
+        <a href="Hero.html" aria-current="page">Rival Cards</a>
+        
+        
+        <a href="Community.html">Community Page</a>
+        <a href="#" class="btn" id="mobile-login-btn">Log in</a>
+        <a class="cta" data-magnetic href="Videos/RivalsLauncher.mp4" download="MarvelRivals_Gameplay.mp4"><span class="shine" aria-hidden="true"></span>Play Now</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 
+    # MAIN HERO SHOWCASE SECTION
+    This is the main hero page where users can browse and search through all the game characters.
+    Each hero has their own page with their own background image. which was one of the trickier 
+    parts to implement because we had to sync the background image with the hero data 
+    and creating ID tags for each hero for the search bar.
+  -->
+  <main id="main" class="hero-page">
+    <section class="hero-showcase" aria-labelledby="hero-roster-title" data-hero-focus>
+      <div class="hero-showcase__backdrop" data-feature-bg>
+        <div class="hero-showcase__backdrop-overlay"></div>
+        <img data-feature-bg-img alt="" aria-hidden="true" />
+      </div>
+
+      <!-- 
+        # HERO SIDEBAR SECTION
+        This sidebar contains the search bar, role filters (All, Vanguard, Duelist, Strategist),
+        and hero count. The search functionality was a challenge because we needed to handle
+        partial matches, team names, and character names all at once. Also had to make sure
+        the "no results" message shows helpful suggestions when users search for characters
+        that don't exist yet.
+      -->
+      <aside class="hero-sidebar" aria-label="Hero categories">
+        <div class="hero-search-container">
+          <div class="hero-search-wrapper">
+            <input 
+              type="text" 
+              id="hero-search-input" 
+              class="hero-search-input" 
+              placeholder="Search Your Rivals..." 
+              aria-label="Search heroes"
+              data-hero-search
+            />
+            <button type="button" class="hero-search-button" aria-label="Search" data-hero-search-btn>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+              </svg>
+            </button>
+          </div>
+          <!-- 
+            # SEARCH NO RESULTS MESSAGE
+            When users search for a character that doesn't exist, this shows up with helpful
+            suggestions. The suggestions are clickable buttons that filter by team/group.
+            Had to make sure this appears smoothly and doesn't break the layout when it shows.
+          -->
+          <div class="hero-search-no-results" data-hero-no-results hidden>
+            <p class="hero-search-error">Sorry, This Character Has Not Been Added</p>
+            <div class="hero-search-suggestions">
+              <span class="hero-search-suggestions-label">Suggestions:</span>
+              <button type="button" class="hero-search-suggestion" data-suggestion="avengers">Avengers</button>
+              <button type="button" class="hero-search-suggestion" data-suggestion="x-men">X-Men</button>
+              <button type="button" class="hero-search-suggestion" data-suggestion="illuminati">Illuminati</button>
+              <button type="button" class="hero-search-suggestion" data-suggestion="vigilante">Vigilante</button>
+              <button type="button" class="hero-search-suggestion" data-suggestion="fantastic four">Fantastic Four</button>
+              <button type="button" class="hero-search-suggestion" data-suggestion="guardians of the galaxy">Guardians of the Galaxy</button>
+            </div>
+          </div>
+        </div>
+        <h2 id="hero-roster-title">Rival Index</h2>
+        <div class="hero-sidebar__filters" role="tablist" aria-label="Hero role filters">
+          <button class="hero-filter active" type="button" role="tab" aria-selected="true" data-filter="all">All</button>
+          <button class="hero-filter" type="button" role="tab" aria-selected="false" data-filter="vanguard">Vanguard</button>
+          <button class="hero-filter" type="button" role="tab" aria-selected="false" data-filter="duelist">Duelist</button>
+          <button class="hero-filter" type="button" role="tab" aria-selected="false" data-filter="strategist">Strategist</button>
+        </div>
+        <div class="hero-sidebar__meta">
+          <p><span data-filter-count>0</span> Rivalers</p>
+          <p class="hero-sidebar__hint">Tap a hero card or scroll to swap the spotlight.</p>
+        </div>
+      </aside>
+
+      <!-- 
+        # HERO FEATURE PANEL
+        This is the big card on the right that shows detailed info about the currently
+        selected hero. It displays role, stats, abilities, and has a "View More" button
+        that shows a popup with signature skills and lore. Getting the popup to position
+        correctly and stay visible when hovering was stressful as Ihad to use absolute positioning
+        and z-index carefully to make sure it doesn't get cut off or hidden behind other elements.
+      -->
+      <div class="hero-feature" data-feature-panel>
+        <article class="hero-feature__card" aria-live="polite">
+          <header class="hero-feature__header">
+            <div class="hero-feature__labels">
+              <span class="hero-role" data-feature-role></span>
+              <span class="hero-subtag" data-feature-tagline></span>
+            </div>
+            <h1 class="hero-feature__name" data-feature-name></h1>
+          </header>
+          <p class="hero-feature__summary" data-feature-summary></p>
+          <dl class="hero-feature__stats" data-feature-stats></dl>
+          <div class="hero-feature__meta">
+            <div class="hero-feature__meta-item">
+              <span class="hero-feature__meta-label">Attack Type</span>
+              <span class="hero-feature__meta-value" data-feature-attack></span>
+            </div>
+            <div class="hero-feature__meta-item">
+              <span class="hero-feature__meta-label">Real Name</span>
+              <span class="hero-feature__meta-value" data-feature-realname></span>
+            </div>
+            <div class="hero-feature__meta-item">
+              <span class="hero-feature__meta-label">Health</span>
+              <span class="hero-feature__meta-value" data-feature-health></span>
+            </div>
+          <div class="hero-feature__meta-item">
+            <span class="hero-feature__meta-label">Difficulty</span>
+            <span class="hero-feature__meta-value" data-feature-difficulty></span>
+          </div>
+          </div>
+
+          <div class="hero-feature__actions">
+            <button class="hero-feature__view-more" type="button">
+              <span>VIEW MORE</span>
+              <div class="hero-feature__view-more-popup" data-feature-popup>
+                <div class="hero-feature__popup-content">
+                  <h3>Signature Skills</h3>
+                  <ul class="hero-feature__popup-skills" data-feature-popup-skills></ul>
+                  <p class="hero-feature__popup-lore" data-feature-popup-lore></p>
+                </div>
+              </div>
+            </button>
+          </div>
+        </article>
+        <div class="hero-feature__canvas">
+          <img class="hero-feature__portrait" data-feature-portrait src="" alt="Featured hero" />
+        </div>
+      </div>
+    </section>
+
+    <!-- 
+      # HERO ROSTER GRID SECTION
+      Each card shows a hero portrait, name, and role. When clicked, it updates the 
+      feature panel above. The cards have a reveal animation that was fun to implement where 
+      they fade in and slide up one by one.
+    -->
+    <section class="hero-roster" aria-label="Hero roster" data-roster-section>
+      <header class="hero-roster__head">
+        <div>
+          <p class="hero-roster__eyebrow">Roster Reveal</p>
+          <h2>Choose Your Champion</h2>
+        </div>
+        <div class="hero-roster__counts">
+          <span>All: <strong data-count-all>0</strong></span>
+          <span>Vanguard: <strong data-count-vanguard>0</strong></span>
+          <span>Duelist: <strong data-count-duelist>0</strong></span>
+          <span>Strategist: <strong data-count-strategist>0</strong></span>
+        </div>
+      </header>
+      <div class="hero-roster__grid" data-roster></div>
+      <!-- 
+        # PLAY NOW CALL-TO-ACTION SECTION
+        This is the download section at the bottom of the hero roster. Has a background
+        image and a "Play Now" button. Pretty straightforward, but had to make sure
+        the background image doesn't overpower the text and the button stands out enough.
+      -->
+      <div class="hero-roster__play-now">
+        <div class="hero-roster__play-now-bg">
+          <video class="hero-roster__play-now-video" autoplay muted loop playsinline aria-hidden="true">
+            <source src="Videos/JeffApologyVid.mp4" type="video/mp4">
+          </video>
+          <img src="Images/New1.jpg" alt="Game background" style="display: none;" />
+        </div>
+        <div class="hero-roster__play-now-content">
+          <h2>Ready to Battle?</h2>
+          <p>Join millions of players hardstuck in Gold Lobbies and suffer by click this button!</p>
+          <a href="Videos/RivalsLauncher.mp4" class="cta hero-roster__play-now-btn" download="MarvelRivals_Gameplay.mp4">
+            <span class="shine" aria-hidden="true"></span>Glowing Button!
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 
+    # HERO DETAIL MODAL
+    This modal pops up when users click on a hero card. Shows full details including
+    all abilities, stats, and lore. The modal has a nice slide-in animation and can be
+    closed by clicking the X button or clicking outside.
+  -->
+  <div class="hero-modal" id="hero-modal" hidden>
+    <div class="hero-modal__overlay" data-modal-close></div>
+    <div class="hero-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="hero-modal-title">
+      <button class="hero-modal__close" type="button" aria-label="Close details" data-modal-close>&times;</button>
+      <header class="hero-modal__header">
+        <div class="hero-modal__portrait">
+          <img data-modal-portrait src="" alt="" />
+        </div>
+        <div>
+          <span class="hero-role" data-modal-role></span>
+          <h2 id="hero-modal-title" data-modal-name></h2>
+          <p class="hero-modal__tagline" data-modal-tagline></p>
+        </div>
+      </header>
+      <div class="hero-modal__body">
+        <section class="hero-modal__section hero-modal__section--grid">
+          <div class="hero-modal__fact">
+            <span class="hero-modal__fact-label">Attack Type</span>
+            <span class="hero-modal__fact-value" data-modal-attack></span>
+          </div>
+          <div class="hero-modal__fact">
+            <span class="hero-modal__fact-label">Role</span>
+            <span class="hero-modal__fact-value" data-modal-role></span>
+          </div>
+          <div class="hero-modal__fact">
+            <span class="hero-modal__fact-label">Real Name</span>
+            <span class="hero-modal__fact-value" data-modal-realname></span>
+          </div>
+          <div class="hero-modal__fact">
+            <span class="hero-modal__fact-label">Health</span>
+            <span class="hero-modal__fact-value" data-modal-health></span>
+          </div>
+          <div class="hero-modal__fact">
+            <span class="hero-modal__fact-label">Difficulty</span>
+            <span class="hero-modal__fact-value" data-modal-difficulty></span>
+          </div>
+        </section>
+
+        <p class="hero-modal__lore" data-modal-lore></p>
+
+        <section class="hero-modal__section">
+          <h3>Signature Skills</h3>
+          <ul class="hero-modal__abilities" data-modal-abilities></ul>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container foot-min">
+      <div>
+        <div class="foot-links">
+          <a href="https://protocol.unisdk.easebar.com/release/latest_v487.html">Terms & Conditions</a><span class="sep">|</span>
+          <a href="https://protocol.unisdk.easebar.com/release/latest_v475.html">Privacy Policy</a><span class="sep">|</span>
+          <a href="https://www.marvelrivals.com/guide/server">FAQ</a><span class="sep">|</span>
+          <a href="https://act.neteasegames.com/activity/3sSWzy">Perks</a><span class="sep">|</span>
+          <a href="https://www.marvelrivals.com/creator_program.html">PartnerHub</a>
+        </div>
+        <div class="foot-meta">Copyright © 2026 Rivals . Yippie New Year!</div>
+        <div class="foot-badges">
+          <img src="Images/NetEase.png" alt="Compliance badge" class="badge-img" />
+          <img src="Images/Marvel Logo.png" alt="Age rating" class="badge-img" />
+        </div>
+      </div>
+      <div class="foot-right">
+        <div class="foot-logo" aria-label="Company logo">
+          <img src="Images/TeenEsp.png" alt="Company logo" />
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Login/Sign-in Popup -->
+  <div id="login-popup" class="login-popup" hidden>
+    <div class="login-overlay"></div>
+    <div class="login-modal">
+      <button class="login-close" aria-label="Close login">&times;</button>
+      
+      <!-- Split Screen Layout -->
+      <div class="login-modal-content">
+        <!-- Left Section: Registration -->
+        <div class="login-section registration-section">
+          <div class="login-section-header">
+            <div class="login-logo-container">
+              <img src="Images/Rival.png" alt="Marvel Rivals" class="login-logo-image" />
+              <div class="login-logo-text">
+                <span class="login-logo-brand">Account</span>
+                <span class="login-logo-name">Marvel Rivals</span>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="login-section-title">Registration</h2>
+
+          <form id="popup-registrationForm" class="login-auth-form">
+            <div class="login-form-group">
+              <input type="email" id="popup-reg-email" placeholder="E-mail" required>
+            </div>
+            <div class="login-form-group">
+              <input type="text" id="popup-reg-nickname" placeholder="Nickname" required>
+            </div>
+            <div class="login-form-group login-password-group">
+              <input type="password" id="popup-reg-password" placeholder="Password" required>
+              <button type="button" class="password-toggle" id="popup-reg-password-toggle" aria-label="Toggle password visibility">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                  <line x1="1" y1="1" x2="23" y2="23"></line>
+                </svg>
+              </button>
+            </div>
+            <div class="login-form-group login-password-group">
+              <input type="password" id="popup-reg-password-repeat" placeholder="Repeat the password" required>
+              <button type="button" class="password-toggle" id="popup-reg-password-repeat-toggle" aria-label="Toggle password visibility">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                  <line x1="1" y1="1" x2="23" y2="23"></line>
+                </svg>
+              </button>
+            </div>
+            <div class="login-form-group login-captcha-group">
+              <input type="text" id="popup-reg-captcha" placeholder="Enter the code" required>
+              <div class="login-captcha-display">
+                <span id="popup-captcha-text">694</span>
+                <span class="login-captcha-lang">/en</span>
+                <button type="button" class="login-captcha-refresh" id="popup-refreshCaptcha" aria-label="Refresh captcha">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                    <path d="M21 3v5h-5"/>
+                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                    <path d="M3 21v-5h5"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="login-form-group login-checkbox-group">
+              <label class="login-checkbox-label">
+                <input type="checkbox" id="popup-reg-terms" required>
+                <span>I accept <a href="#" class="login-link">Terms of Service</a> and <a href="#" class="login-link">Privacy Policy</a>.</span>
+              </label>
+            </div>
+            <button type="submit" class="login-submit-btn" id="popup-reg-submit-btn" disabled>CREATE AN ACCOUNT</button>
+          </form>
+
+        </div>
+
+        <!-- Right Section: Login -->
+        <div class="login-section login-right-section">
+          <video class="login-right-section__video" autoplay muted loop playsinline aria-hidden="true">
+            <source src="Videos/LunaDanceVid.mp4" type="video/mp4">
+          </video>
+          <div class="login-right-content">
+            <!-- Guest login status display -->
+            <div id="guest-status" class="guest-status" style="display: none;">
+              <p class="guest-status-text">Currently logged in as <strong>Guest</strong></p>
+              <button class="guest-logout-btn" id="guest-logout-btn">Logout Guest</button>
+            </div>
+            
+            <p class="login-description" id="login-description">Already played Rival? Save your progress!</p>
+            <button class="login-social-login-btn" id="popup-guestLogin">
+              <div class="login-social-icon">👤</div>
+              <span>Continue As Guest</span>
+            </button>
+            <div class="login-expandable-section">
+              <button class="login-expand-btn" id="popup-expandLink">
+                <span>Played before but haven't linked an email?</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 9l6 6 6-6"/>
+                </svg>
+              </button>
+              <div class="login-expand-content" id="popup-expandContent" hidden>
+                <form id="popup-loginForm" class="login-auth-form">
+                  <div class="login-form-group">
+                    <input type="email" id="popup-login-email" placeholder="E-mail" required>
+                  </div>
+                  <div class="login-form-group login-password-group">
+                    <input type="password" id="popup-login-password" placeholder="Password" required>
+                    <button type="button" class="password-toggle" id="popup-login-password-toggle" aria-label="Toggle password visibility">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                      </svg>
+                    </button>
+                  </div>
+                  <button type="submit" class="login-submit-btn">LOG IN</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script defer src="Rivals.js"></script>
+  
+  <!-- React and ReactDOM for Music Player (load first) -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  
+  <!-- YouTube IFrame Player API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  
+  <!-- Music Player Styles and Script -->
+  <link rel="stylesheet" href="music-player.css" />
+  <script defer src="music-player.js"></script>
+</body>
+</html>
+
+

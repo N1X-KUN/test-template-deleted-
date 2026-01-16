@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0f0f16" />
+  <title>Patch Notes - Rivals Nexus</title>
+  <link rel="icon" href="Images/Rival.png" type="image/x-icon" />
+  <link rel="stylesheet" href="Rivals.css" />
+  <!-- 
+    # PATCH PAGE STYLES
+    Inline styles for news and hero cards. The news cards need to be clickable
+    links, and the media images need to fill their containers properly. Had to
+    set min-heights so the cards don't collapse when images load slowly.
+  -->
+  <style>
+    /* Make news cards act like links you can fill in later */
+    .news-card[role="link"] { cursor: pointer; }
+    /* Media helpers for images */
+    .hero-media img, .news-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .news-media { min-height: 120px; }
+    .hero-media { min-height: 160px; }
+  </style>
+</head>
+<body>
+  <!-- Page Loader -->
+  <div id="page-loader" class="page-loader">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <img src="Images/Icon Logo.svg" alt="Rivals Nexus" />
+      </div>
+      <div class="loader-text">
+        RIVALING<span class="loader-dots"></span>
+      </div>
+      <div class="loader-progress">
+        <div class="loader-progress-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <a class="sr-only" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="Rivals.html" aria-label="Rivals Nexus Home">
+        <img src="Images/Icon Logo.svg" alt="Brand" style="height:28px;width:auto" />
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="Patch.html" aria-current="page">Patch Notes</a>
+        <a href="Hero.html">Rival Cards</a>
+        <a href="Community.html">Spawn Chats</a>
+        <a href="#" aria-label="Log in" title="Log in" class="login-icon" id="login-btn">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <a class="cta" data-magnetic href="Videos/RivalsLauncher.mp4" download="MarvelRivals_Gameplay.mp4"><span class="shine" aria-hidden="true"></span>Play Now</a>
+      </nav>
+      <button class="hamburger" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+    <div class="drawer" id="mobile-drawer" hidden>
+      <div class="drawer-panel" role="dialog" aria-label="Mobile Menu">
+        <a href="Patch.html" aria-current="page">Patch Notes</a>
+        <a href="Hero.html">Rival Cards</a>
+        <a href="Community.html">Spawn Chats</a>
+        <a href="#" class="btn" id="mobile-login-btn">Log in</a>
+        <a class="cta" data-magnetic href="Videos/RivalsLauncher.mp4" download="MarvelRivals_Gameplay.mp4"><span class="shine" aria-hidden="true"></span>Play Now</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 
+    # PAGE HERO BANNER
+    Full-width banner at the top with the patch notes background image.
+  -->
+  <section class="page-hero" aria-label="News & Patch Notes banner" style="background-image: linear-gradient(rgba(15,15,22,.55), rgba(15,15,22,.55)), url('Images/PatchImage.jpg'); background-size: cover; background-position: center; padding: 64px 5vw; margin: 0 0 24px; min-height: 220px; display: flex; align-items: flex-end;">
+    <div class="container" style="width:100%">
+      <h1 style="margin:0">News & Patch Notes</h1>
+    </div>
+  </section>
+
+  <main id="main" class="container">
+
+    <!-- 
+      # NEWS & UPDATES SECTION
+      This section shows the latest game news and announcements. The first 6
+      cards are visible by default, and the rest are hidden until the user
+      clicks "Show more". Each card links to the actual Marvel Rivals website.
+      The "Show more/less" toggle was tricky because I had to make sure all
+      the hidden cards show/hide together, not one by one.
+    -->
+    <section class="news-section" aria-labelledby="news-heading">
+      <div class="section-head">
+        <h2 id="news-heading">Latest News & Updates</h2>
+        <p class="section-sub">This is totaly outdated but yay so many words to fill in the space!</p>
+      </div>
+
+      <!-- 
+        # NEWS GRID
+        Grid of news cards. The first 6 are visible, the rest have the "more"
+        class and are hidden by default. The data-collapsed attribute tracks
+        whether the extra cards are shown or not. Each card has a data-href
+        attribute that links to the actual Marvel Rivals news article.
+      -->
+      <div class="news-grid" id="news-grid" data-collapsed="true" aria-live="polite">
+        <!-- Visible items -->
+        <article class="news-card" tabindex="0" data-news-id="news-1" data-href="https://www.marvelrivals.com/gameupdate/20251003/41548_1263184.html">
+          <div class="news-card__admin-menu" style="display: none;">
+            <button class="news-card__hide-btn" type="button" data-news-id="news-1" aria-label="Hide news">Hide</button>
+          </div>
+          <figure class="news-media" aria-hidden="true"><img src="Images/New1.jpg" alt="News image" /></figure>
+          <div class="news-meta">
+            <span class="pill">Version Update</span>
+            <time datetime="2025-10-10">Oct 10, 2025</time>
+          </div>
+          <h3 class="news-title">Patch Notes: Season 4.5 Arrives</h3>
+          <p class="news-desc">In Season 4.5, Daredevil is set to unleash the beast!</p>
+        </article>
+
+        <article class="news-card" tabindex="0" data-news-id="news-2" data-href="https://www.marvelrivals.com/balancepost/20251001/41667_1263090.html">
+          <div class="news-card__admin-menu" style="display: none;">
+            <button class="news-card__hide-btn" type="button" data-news-id="news-2" aria-label="Hide news">Hide</button>
+          </div>
+          <figure class="news-media alt" aria-hidden="true"><img src="Images/New2.jpg" alt="News image" /></figure>
+          <div class="news-meta">
+            <span class="pill">Balance Post</span>
+            <time datetime="2025-10-10">Oct 10, 2025</time>
+          </div>
+          <h3 class="news-title">Hero Balance Adjustments</h3>
+          <p class="news-desc">The Marvel Rivals universe never stands still! With new buffs, nerfs, and team-up tweaks, the meta is evolving once again. Suit up and see which heroes are rising and who's getting knocked down a peg!</p>
+        </article>
+
+        <article class="news-card" tabindex="0" data-news-id="news-3" data-href="https://www.marvelrivals.com/gameupdate/20250930/41548_1262803.html">
+          <div class="news-card__admin-menu" style="display: none;">
+            <button class="news-card__hide-btn" type="button" data-news-id="news-3" aria-label="Hide news">Hide</button>
+          </div>
+          <figure class="news-media dark" aria-hidden="true"><img src="Images/New3.jpg" alt="News image" /></figure>
+          <div class="news-meta">
+            <span class="pill">Announcement</span>
+            <time datetime="2025-10-02">Oct 2, 2025</time>
+          </div>
+          <h3 class="news-title">New Additions and Optimizations</h3>
+          <p class="news-desc">We're thrilled to announce the upcoming patch drops on October 2nd, 2025, at 09:00:00 (UTC)! This update will be deployed seamlessly, with no server downtime required! Simply log in after the update and jump right back into the action.</p>
+        </article>
+
+        <article class="news-card" tabindex="0" data-news-id="news-4" data-href="https://www.marvelrivals.com/gameupdate/20250924/41548_1261216.html">
+          <div class="news-card__admin-menu" style="display: none;">
+            <button class="news-card__hide-btn" type="button" data-news-id="news-4" aria-label="Hide news">Hide</button>
+          </div>
+          <figure class="news-media dark" aria-hidden="true"><img src="Images/New4.png" alt="News image" /></figure>
+          <div class="news-meta">
+            <span class="pill">Announcement</span>
+            <time datetime="2025-10-02">Sep 24, 2025</time>
+          </div>
+          <h3 class="news-title">New Event: Shou-Lao's Blessing</h3>
+          <p class="news-desc">The long silence has ended, the Immortal Dragon Shou-Lao has awakened! His glory and blessings await every brave warrior! Complete Shou-Lao's Blessing for a FREE Costume Coin, 500 Units, and 500 Unstable Molecules!</p>
+        </article>
+
+        <article class="news-card" tabindex="0" data-news-id="news-5" data-href="https://www.marvelrivals.com/gameupdate/20250917/41548_1259811.html">
+          <div class="news-card__admin-menu" style="display: none;">
+            <button class="news-card__hide-btn" type="button" data-news-id="news-5" aria-label="Hide news">Hide</button>
+          </div>
+          <figure class="news-media dark" aria-hidden="true"><img src="Images/New5.png" alt="News image" /></figure>
+          <div class="news-meta">
+            <span class="pill">Announcement</span>
+            <time datetime="2025-10-02">Sep 7, 2025</time>
+          </div>
+          <h3 class="news-title">New Event: SUMMER SPECIAL VOL. 2</h3>
+          <p class="news-desc">The highly anticipated Summer Special Vol. 2 is about to heat things up! Level up the event to unlock FREE rewards like The Thing - Rocky Tide! Upgrade to the Premium Edition and unlock even more exclusive rewards, such as Mantis - Oceanic Harmony and Human Torch - Sunny Sizzler costumes.</p>
+        </article>
+
+        <article class="news-card" tabindex="0" data-news-id="news-6" data-href="https://www.marvelrivals.com/announcements/20250910/40955_1258689.html">
+          <div class="news-card__admin-menu" style="display: none;">
+            <button class="news-card__hide-btn" type="button" data-news-id="news-6" aria-label="Hide news">Hide</button>
+          </div>
+          <figure class="news-media dark" aria-hidden="true"><img src="Images/New6.jpg" alt="News image" /></figure>
+          <div class="news-meta">
+            <span class="pill">Announcement</span>
+            <time datetime="2025-10-02">Sep 10, 2025</time>
+          </div>
+          <h3 class="news-title">Season 3.5 — Winners Event</h3>
+          <p class="news-desc">Congratulations to all the winners — your content cut through the darkness and earned a place in the spotlight. Thank you to everyone who participated in the event. We can't wait to see what you create next.</p>
+        </article>
+
+        <!-- 
+          # HIDDEN NEWS CARDS
+          These cards are hidden by default and only show when the user clicks
+          "Show more". They have both the "more" class and hidden attribute,
+          plus inline display:none as a fallback. The JavaScript handles showing
+          them all at once when the button is clicked.
+        -->
+        <article class="news-card more" hidden style="display:none" data-news-id="news-7" data-href="https://www.marvelrivals.com/balancepost/20250904/41667_1257761.html">
+          <div class="news-card__admin-menu" style="display: none;">
+            <button class="news-card__hide-btn" type="button" data-news-id="news-7" aria-label="Hide news">Hide</button>
+          </div>
+          <figure class="news-media" aria-hidden="true"><img src="Images/New2.jpg" alt="News image" /></figure>
+          <div class="news-meta">
+            <span class="pill">Balance Post</span>
+            <time datetime="2025-09-25">Sep 4, 2025</time>
+          </div>
+          <h3 class="news-title">Hero Balance Adjustments</h3>
+          <p class="news-desc">The Marvel Rivals universe is shifting. Some are getting recharged, some are facing nerfs, and new team-up changes are bringing even more epic showdowns! Let's break down which heroes are getting a power boost and who's feeling the sting.</p>
+        </article>
+
+        <article class="news-card more" hidden style="display:none" data-news-id="news-8" data-href="https://www.marvelrivals.com/gameupdate/20250904/41548_1257695.html">
+          <div class="news-card__admin-menu" style="display: none;">
+            <button class="news-card__hide-btn" type="button" data-news-id="news-8" aria-label="Hide news">Hide</button>
+          </div>
+          <figure class="news-media" aria-hidden="true"><img src="Images/New8.png" alt="News image" /></figure>
+          <div class="news-meta">
+            <span class="pill">Dev Diaries</span>
+            <time datetime="2025-09-25">Sep 4, 2025</time>
+          </div>
+          <h3 class="news-title">Patch Notes: Season 4 Heart of the Dragon</h3>
+          <p class="news-desc">Season 4 is upon us, and Angela joins the fray in the Heart of Heaven! The update begins on September 12th, 2025, at 09:00:00 (UTC), with estimated maintenance lasting 2–3 hours.</p>
+        </article>
+
+        <article class="news-card more" hidden style="display:none" data-news-id="news-9" data-href="https://www.marvelrivals.com/announcements/20250825/40955_1255852.html">
+          <div class="news-card__admin-menu" style="display: none;">
+            <button class="news-card__hide-btn" type="button" data-news-id="news-9" aria-label="Hide news">Hide</button>
+          </div>
+          <figure class="news-media alt" aria-hidden="true"><img src="Images/new9.jpg" alt="News image" /></figure>
+          <div class="news-meta">
+            <span class="pill">Announcement</span>
+            <time datetime="2025-09-20">Aug 25, 2025</time>
+          </div>
+          <h3 class="news-title">S3 Content Incentive Event</h3>
+          <p class="news-desc">We're excited to unveil the winners of the Marvel Rivals Season 3 Content Incentive Event! Thank you to everyone who participated, and stay tuned for more opportunities to showcase your brilliance in upcoming events!</p>
+        </article>
+
+        <article class="news-card more" hidden style="display:none" data-news-id="news-10" data-href="https://www.marvelrivals.com/announcements/20250819/40955_1254599.html">
+          <div class="news-card__admin-menu" style="display: none;">
+            <button class="news-card__hide-btn" type="button" data-news-id="news-10" aria-label="Hide news">Hide</button>
+          </div>
+          <figure class="news-media" aria-hidden="true"><img src="Images/New10.jpg" alt="News image" /></figure>
+          <div class="news-meta">
+            <span class="pill">Announcement</span>
+            <time datetime="2025-09-25">Aug 19, 2025</time>
+          </div>
+          <h3 class="news-title">Game Client Freeze & GPU Crashes Fix Deployed</h3>
+          <p class="news-desc">Recently, we've received a large number of player reports via our community and support channels regarding the following issues: </p>
+        </article>
+
+        <article class="news-card more" hidden style="display:none" data-news-id="news-11" data-href="https://www.marvelrivals.com/announcements/20250807/40955_1252492.html">
+          <div class="news-card__admin-menu" style="display: none;">
+            <button class="news-card__hide-btn" type="button" data-news-id="news-11" aria-label="Hide news">Hide</button>
+          </div>
+          <figure class="news-media" aria-hidden="true"><img src="Images/New11.jpg" alt="News image" /></figure>
+          <div class="news-meta">
+            <span class="pill">Announcement</span>
+            <time datetime="2025-09-25">Aug 8, 2025</time>
+          </div>
+          <h3 class="news-title">Frame Rate Drops with NVIDIA GeForce Driver Version 580.88</h3>
+          <p class="news-desc">Recently, we've noticed a surge in community and customer support reports regarding performance issues with NVIDIA GeForce driver versions 580.88.</p>
+        </article>
+
+        <article class="news-card more" hidden style="display:none" data-news-id="news-12" data-href="https://www.marvelrivals.com/announcements/20250731/40955_1251113.html">
+          <div class="news-card__admin-menu" style="display: none;">
+            <button class="news-card__hide-btn" type="button" data-news-id="news-12" aria-label="Hide news">Hide</button>
+          </div>
+          <figure class="news-media alt" aria-hidden="true"><img src="Images/New12.jpg" alt="News image" /></figure>
+          <div class="news-meta">
+            <span class="pill">Announcement</span>
+            <time datetime="2025-09-20">Jul 31, 2025</time>
+          </div>
+          <h3 class="news-title">Community Management Upgrade Announcement</h3>
+          <p class="news-desc">Too Lazy to make a summary... Just Click This lol</p>
+        </article>
+      </div>
+
+      <div class="section-actions">
+        <button id="news-more" class="btn-ghost" aria-controls="news-grid">Show more</button>
+        <button id="news-less" class="btn-ghost" aria-controls="news-grid" hidden>Show less</button>
+      </div>
+    </section>
+
+    <div class="section-divider" role="separator" aria-hidden="true"></div>
+
+    <!-- 
+      # PATCH UPDATES SECTION
+      This section shows hero balance changes - buffs and nerfs. Each hero card
+      has a badge showing whether they got buffed or nerfed. The cards have a
+      wavy animation effect that makes them stand out. The data-state attribute
+      ("buff" or "nerf") is used for styling - buffed heroes get one color scheme,
+      nerfed heroes get another. The descriptions are intentionally funny/sarcastic
+      because that's the vibe I wanted for this page.
+    -->
+    <section class="patch-section" aria-labelledby="patch-heading">
+      <div class="section-head patch-head">
+        <div>
+          <h2 id="patch-heading">Patch Updates</h2>
+          <p class="section-sub">Season 4.5 -- Nutshell Hero Buffs & Nerfs (Definitely upto date with the game.)</p>
+        </div>
+        <p class="patch-tagline">Oooh~ It has a wavy animation too so is not boring at all!</p>
+      </div>
+
+      <!-- 
+        # PATCH GRID
+        Grid of hero cards showing balance changes. Each card has a data-state
+        of either "buff" or "nerf" which determines the badge color and styling.
+        The data-href is empty for now but could link to detailed patch notes
+        later. The wavy animation on the cards makes them feel more dynamic and
+        less static compared to regular hero cards.
+      -->
+      <div class="hero-grid patch-grid">
+        <!-- Buff Card -->
+        <article class="hero-card" data-state="buff" data-href="">
+          <figure class="hero-media" aria-label="Venom artwork">
+            <img src="Images/PVenom.jpg" alt="VenomWin" />
+          </figure>
+          <div class="hero-body">
+            <div class="hero-header">
+              <h3 class="hero-name">Venom</h3>
+              <span class="badge buff" aria-label="Buffed">Buff</span>
+            </div>
+            <p class="hero-desc">Became A Pain In The-</p>
+          </div>
+        </article>
+
+        <article class="hero-card" data-state="buff" data-href="">
+          <figure class="hero-media" aria-label="Angela artwork">
+            <img src="Images/PAngela.jpg" alt="AngelaWin" />
+          </figure>
+          <div class="hero-body">
+            <div class="hero-header">
+              <h3 class="hero-name">Angela</h3>
+              <span class="badge buff" aria-label="Buffed">Buff</span>
+            </div>
+            <p class="hero-desc">A Giant Mommy Mosquito Poking Hard.</p>
+          </div>
+        </article>
+
+        <article class="hero-card" data-state="buff" data-href="">
+          <figure class="hero-media" aria-label="Bucky artwork">
+            <img src="Images/PWinter.jpg" alt="WinterWin" />
+          </figure>
+          <div class="hero-body">
+            <div class="hero-header">
+              <h3 class="hero-name">Winter Soldier</h3>
+              <span class="badge buff" aria-label="Buffed">Buff</span>
+            </div>
+            <p class="hero-desc">Therapist Said Be Kind... Again!</p>
+          </div>
+        </article>
+
+        <article class="hero-card" data-state="buff" data-href="">
+          <figure class="hero-media" aria-label="Blade artwork">
+            <img src="Images/PBlade.jpg" alt="BladeWin" />
+          </figure>
+          <div class="hero-body">
+            <div class="hero-header">
+              <h3 class="hero-name">Blade</h3>
+              <span class="badge buff" aria-label="Buffed">Buff</span>
+            </div>
+            <p class="hero-desc">Virgil Reincarnated But In The Hood...</p>
+          </div>
+        </article>
+
+        <!-- Nerf Card -->
+        <article class="hero-card" data-state="nerf" data-href="">
+          <figure class="hero-media" aria-label="Emma artwork">
+            <img src="Images/PEmma.jpg" alt="EmmaLose" />
+          </figure>
+          <div class="hero-body">
+            <div class="hero-header">
+              <h3 class="hero-name">Emma</h3>
+              <span class="badge nerf" aria-label="Nerfed">Nerf</span>
+            </div>
+            <p class="hero-desc">The Thicker It Is, The Longer The Skills.</p>
+          </div>
+        </article>
+
+        <article class="hero-card" data-state="buff" data-href="">
+          <figure class="hero-media" aria-label="Moon artwork">
+            <img src="Images/PMoon.jpg" alt="MoonWin" />
+          </figure>
+          <div class="hero-body">
+            <div class="hero-header">
+              <h3 class="hero-name">Moon Knight</h3>
+              <span class="badge buff" aria-label="Buffed">Buff</span>
+            </div>
+            <p class="hero-desc">Sailor Moon Power Rise!</p>
+          </div>
+        </article>
+
+        <article class="hero-card" data-state="nerf" data-href="">
+          <figure class="hero-media" aria-label="Torch artwork">
+            <img src="Images/PTorch.jpg" alt="TorchL" />
+          </figure>
+          <div class="hero-body">
+            <div class="hero-header">
+              <h3 class="hero-name">Human Torch</h3>
+              <span class="badge nerf" aria-label="Nerfed">Nerf</span>
+            </div>
+            <p class="hero-desc">He is just a bon fire now...</p>
+          </div>
+        </article>
+
+        <article class="hero-card" data-state="nerf" data-href="">
+          <figure class="hero-media" aria-label="CND artwork">
+            <img src="Images/PClok.jpg" alt="CNDL" />
+          </figure>
+          <div class="hero-body">
+            <div class="hero-header">
+              <h3 class="hero-name">Cloak and Dagger</h3>
+              <span class="badge nerf" aria-label="Nerfed">Nerf</span>
+            </div>
+            <p class="hero-desc">Became Clok and Slow Fr</p>
+          </div>
+        </article>
+
+        <article class="hero-card" data-state="nerf" data-href="">
+          <figure class="hero-media" aria-label="Jeff artwork">
+            <img src="Images/PJeff.jpg" alt="JeffL" />
+          </figure>
+          <div class="hero-body">
+            <div class="hero-header">
+              <h3 class="hero-name">Jeff The Land Shark</h3>
+              <span class="badge nerf" aria-label="Nerfed">Nerf</span>
+            </div>
+            <p class="hero-desc">No Longer A Menance To Me.</p>
+          </div>
+        </article>
+
+        <article class="hero-card" data-state="nerf" data-href="">
+          <figure class="hero-media" aria-label="Ultron artwork">
+            <img src="Images/PUltron.jpg" alt="UltronL" />
+          </figure>
+          <div class="hero-body">
+            <div class="hero-header">
+              <h3 class="hero-name">Ultron</h3>
+              <span class="badge nerf" aria-label="Nerfed">Nerf</span>
+            </div>
+            <p class="hero-desc">Not even a support at this point. Where heals?</p>
+          </div>
+        </article>
+
+        <article class="hero-card" data-state="nerf" data-href="">
+          <figure class="hero-media" aria-label="Frank Reed artwork">
+            <img src="Images/PFantastic.jpg" alt="ReedL" />
+          </figure>
+          <div class="hero-body">
+            <div class="hero-header">
+              <h3 class="hero-name">Mr.Fantastic</h3>
+              <span class="badge nerf" aria-label="Nerfed">Nerf</span>
+            </div>
+            <p class="hero-desc">Stretching is no longer a thing...</p>
+          </div>
+        </article>
+
+        <article class="hero-card" data-state="buff" data-href="">
+          <figure class="hero-media" aria-label="Majik artwork">
+            <img src="Images/PMajik.jpg" alt="MajikWin" />
+          </figure>
+          <div class="hero-body">
+            <div class="hero-header">
+              <h3 class="hero-name">Majik</h3>
+              <span class="badge buff" aria-label="Buffed">Buff</span>
+            </div>
+            <p class="hero-desc">Nana said "not broken enough" sure...</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container foot-min">
+      <div>
+        <div class="foot-links">
+          <a href="https://protocol.unisdk.easebar.com/release/latest_v487.html">Terms & Conditions</a><span class="sep">|</span>
+          <a href="https://protocol.unisdk.easebar.com/release/latest_v475.html">Privacy Policy</a><span class="sep">|</span>
+          <a href="https://www.marvelrivals.com/guide/server">FAQ</a><span class="sep">|</span>
+          <a href="https://act.neteasegames.com/activity/3sSWzy">Perks</a><span class="sep">|</span>
+          <a href="https://www.marvelrivals.com/creator_program.html">PartnerHub</a>
+        </div>
+        <div class="foot-meta">Copyright © 2025 Rivals Nexus. All rights reserved.</div>
+        <div class="foot-badges">
+          <img src="Images/NetEase.png" alt="Compliance badge" class="badge-img" />
+          <img src="Images/Marvel Logo.png" alt="Age rating" class="badge-img" />
+        </div>
+      </div>
+      <div class="foot-right">
+        <div class="foot-logo" aria-label="Company logo">
+          <img src="Images/TeenEsp.png" alt="Company logo" />
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Login/Sign-in Popup -->
+  <div id="login-popup" class="login-popup" hidden>
+    <div class="login-overlay"></div>
+    <div class="login-modal">
+      <button class="login-close" aria-label="Close login">&times;</button>
+      
+      <!-- Split Screen Layout -->
+      <div class="login-modal-content">
+        <!-- Left Section: Registration -->
+        <div class="login-section registration-section">
+          <div class="login-section-header">
+            <div class="login-logo-container">
+              <img src="Images/Rival.png" alt="Marvel Rivals" class="login-logo-image" />
+              <div class="login-logo-text">
+                <span class="login-logo-brand">Account</span>
+                <span class="login-logo-name">Marvel Rivals</span>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="login-section-title">Registration</h2>
+
+          <form id="popup-registrationForm" class="login-auth-form">
+            <div class="login-form-group">
+              <input type="email" id="popup-reg-email" placeholder="E-mail" required>
+            </div>
+            <div class="login-form-group">
+              <input type="text" id="popup-reg-nickname" placeholder="Nickname" required>
+            </div>
+            <div class="login-form-group login-password-group">
+              <input type="password" id="popup-reg-password" placeholder="Password" required>
+              <button type="button" class="password-toggle" id="popup-reg-password-toggle" aria-label="Toggle password visibility">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                  <line x1="1" y1="1" x2="23" y2="23"></line>
+                </svg>
+              </button>
+            </div>
+            <div class="login-form-group login-password-group">
+              <input type="password" id="popup-reg-password-repeat" placeholder="Repeat the password" required>
+              <button type="button" class="password-toggle" id="popup-reg-password-repeat-toggle" aria-label="Toggle password visibility">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                  <line x1="1" y1="1" x2="23" y2="23"></line>
+                </svg>
+              </button>
+            </div>
+            <div class="login-form-group login-captcha-group">
+              <input type="text" id="popup-reg-captcha" placeholder="Enter the code" required>
+              <div class="login-captcha-display">
+                <span id="popup-captcha-text">694</span>
+                <span class="login-captcha-lang">/en</span>
+                <button type="button" class="login-captcha-refresh" id="popup-refreshCaptcha" aria-label="Refresh captcha">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                    <path d="M21 3v5h-5"/>
+                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                    <path d="M3 21v-5h5"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="login-form-group login-checkbox-group">
+              <label class="login-checkbox-label">
+                <input type="checkbox" id="popup-reg-terms" required>
+                <span>I accept <a href="#" class="login-link">Terms of Service</a> and <a href="#" class="login-link">Privacy Policy</a>.</span>
+              </label>
+            </div>
+            <button type="submit" class="login-submit-btn" id="popup-reg-submit-btn" disabled>CREATE AN ACCOUNT</button>
+          </form>
+
+        </div>
+
+        <!-- Right Section: Login -->
+        <div class="login-section login-right-section">
+          <video class="login-right-section__video" autoplay muted loop playsinline aria-hidden="true">
+            <source src="Videos/LunaDanceVid.mp4" type="video/mp4">
+          </video>
+          <div class="login-right-content">
+            <!-- Guest login status display -->
+            <div id="guest-status" class="guest-status" style="display: none;">
+              <p class="guest-status-text">Currently logged in as <strong>Guest</strong></p>
+              <button class="guest-logout-btn" id="guest-logout-btn">Logout Guest</button>
+            </div>
+            
+            <p class="login-description" id="login-description">Already played Rival? Save your progress!</p>
+            <button class="login-social-login-btn" id="popup-guestLogin">
+              <div class="login-social-icon">👤</div>
+              <span>Continue As Guest</span>
+            </button>
+            <div class="login-expandable-section">
+              <button class="login-expand-btn" id="popup-expandLink">
+                <span>Played before but haven't linked an email?</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 9l6 6 6-6"/>
+                </svg>
+              </button>
+              <div class="login-expand-content" id="popup-expandContent" hidden>
+                <form id="popup-loginForm" class="login-auth-form">
+                  <div class="login-form-group">
+                    <input type="email" id="popup-login-email" placeholder="E-mail" required>
+                  </div>
+                  <div class="login-form-group login-password-group">
+                    <input type="password" id="popup-login-password" placeholder="Password" required>
+                    <button type="button" class="password-toggle" id="popup-login-password-toggle" aria-label="Toggle password visibility">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                      </svg>
+                    </button>
+                  </div>
+                  <button type="submit" class="login-submit-btn">LOG IN</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 
+    # PATCH PAGE JAVASCRIPT
+    This script handles the "Show more/less" functionality for news cards and
+    makes both news cards and hero cards clickable. The news grid shows the first
+    6 cards by default, and clicking "Show more" reveals all the hidden ones at once.
+    Each card has a data-href attribute that links to the actual article. The hero
+    cards in the patch section are also clickable, but their data-href is empty
+    for now - could add links to detailed patch notes later.
+    
+    Had to be careful with the show/hide logic because the cards have both the
+    hidden attribute and inline display:none, so I had to update both when toggling.
+  -->
+  <script>
+    // Admin functions for hiding news cards
+    function getCurrentUser() {
+      try {
+        const loggedStr = localStorage.getItem('loggedInUser') || sessionStorage.getItem('loggedInUser');
+        if (loggedStr) {
+          const u = JSON.parse(loggedStr);
+          if (u && typeof u === 'object' && u.isGuest !== true) return u;
+        }
+      } catch {}
+      return null;
+    }
+
+    function isAdminUser() {
+      const user = getCurrentUser();
+      return !!user && String(user.role || 'user') === 'admin';
+    }
+
+    const HIDDEN_NEWS_KEY = 'rivals_hidden_news';
+    function getHiddenNews() {
+      try {
+        const raw = localStorage.getItem(HIDDEN_NEWS_KEY);
+        const arr = raw ? JSON.parse(raw) : [];
+        return new Set(Array.isArray(arr) ? arr : []);
+      } catch {
+        return new Set();
+      }
+    }
+
+    function saveHiddenNews(set) {
+      localStorage.setItem(HIDDEN_NEWS_KEY, JSON.stringify(Array.from(set)));
+    }
+
+    function toggleHideNews(newsId) {
+      const set = getHiddenNews();
+      const id = String(newsId);
+      if (set.has(id)) set.delete(id);
+      else set.add(id);
+      saveHiddenNews(set);
+      return set.has(id);
+    }
+
+    // News grid: show first 6, toggle the rest all at once (Show more/less)
+    (function () {
+      const grid = document.getElementById('news-grid');
+      const btnMore = document.getElementById('news-more');
+      const btnLess = document.getElementById('news-less');
+      if (!grid || !btnMore || !btnLess) return;
+
+      const extraCards = Array.from(grid.querySelectorAll('.news-card.more'));
+      let isAdmin = isAdminUser();
+      const allCards = Array.from(grid.querySelectorAll('.news-card'));
+
+      // Filter hidden news for non-admins
+      function filterHiddenNews() {
+        const hiddenNews = getHiddenNews(); // Get fresh hidden news set
+        isAdmin = isAdminUser(); // Check admin status fresh
+        
+        allCards.forEach(card => {
+          const newsId = card.getAttribute('data-news-id');
+          if (!newsId) return;
+          
+          const isHidden = hiddenNews.has(String(newsId));
+          
+          // Non-admins can't see hidden news
+          if (!isAdmin && isHidden) {
+            card.style.display = 'none';
+            card.hidden = true;
+            return;
+          }
+          
+          // Admins can see hidden news but with visual indicator
+          if (isAdmin && isHidden) {
+            card.classList.add('news-card--hidden');
+            card.style.opacity = '0.5';
+            card.style.display = ''; // Make sure it's visible for admins
+            card.hidden = false;
+          } else {
+            card.classList.remove('news-card--hidden');
+            card.style.opacity = '';
+          }
+        });
+      }
+
+      // Show admin hide buttons
+      function setupAdminButtons() {
+        isAdmin = isAdminUser(); // Check admin status fresh
+        if (!isAdmin) {
+          // Hide all admin menus for non-admins
+          allCards.forEach(card => {
+            const adminMenu = card.querySelector('.news-card__admin-menu');
+            if (adminMenu) adminMenu.style.display = 'none';
+          });
+          return;
+        }
+        
+        const hiddenNews = getHiddenNews(); // Get fresh hidden news set
+        
+        allCards.forEach(card => {
+          const newsId = card.getAttribute('data-news-id');
+          if (!newsId) return;
+          
+          const adminMenu = card.querySelector('.news-card__admin-menu');
+          if (adminMenu) {
+            adminMenu.style.display = 'block';
+            
+            const hideBtn = adminMenu.querySelector('.news-card__hide-btn');
+            if (hideBtn) {
+              const isHidden = hiddenNews.has(String(newsId));
+              hideBtn.textContent = isHidden ? 'Show' : 'Hide';
+              
+              // Remove existing listeners to avoid duplicates
+              const newHideBtn = hideBtn.cloneNode(true);
+              hideBtn.parentNode.replaceChild(newHideBtn, hideBtn);
+              
+              newHideBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent card click
+                const newsId = newHideBtn.getAttribute('data-news-id');
+                const nowHidden = toggleHideNews(newsId);
+                newHideBtn.textContent = nowHidden ? 'Show' : 'Hide';
+                
+                // Update all hide buttons to reflect current state
+                const updatedHiddenNews = getHiddenNews();
+                allCards.forEach(card => {
+                  const cardNewsId = card.getAttribute('data-news-id');
+                  if (!cardNewsId) return;
+                  const cardMenu = card.querySelector('.news-card__admin-menu');
+                  if (cardMenu) {
+                    const cardHideBtn = cardMenu.querySelector('.news-card__hide-btn');
+                    if (cardHideBtn) {
+                      const cardIsHidden = updatedHiddenNews.has(String(cardNewsId));
+                      cardHideBtn.textContent = cardIsHidden ? 'Show' : 'Hide';
+                    }
+                  }
+                });
+                
+                // Re-filter and update display
+                filterHiddenNews();
+                // Re-apply show more/less state
+                const isCollapsed = grid.dataset.collapsed === 'true';
+                showExtras(!isCollapsed);
+                updateShowMoreButtons();
+              });
+            }
+          }
+        });
+      }
+
+      function showExtras(show) {
+        const hiddenNews = getHiddenNews(); // Get fresh hidden news set
+        isAdmin = isAdminUser(); // Check admin status fresh
+        
+        // Admins see all cards by default
+        if (isAdmin) {
+          extraCards.forEach(card => {
+            const newsId = card.getAttribute('data-news-id');
+            card.hidden = false;
+            card.style.display = '';
+          });
+          grid.dataset.collapsed = 'false'; 
+          updateShowMoreButtons();
+          return;
+        }
+        
+        // Regular users: show/hide based on button state
+        extraCards.forEach(card => {
+          const newsId = card.getAttribute('data-news-id');
+          // Don't show if it's hidden (for non-admins)
+          if (newsId && hiddenNews.has(String(newsId))) {
+            card.hidden = true;
+            card.style.display = 'none';
+            return;
+          }
+          
+          // Show or hide based on button state
+          card.hidden = !show;
+          card.style.display = show ? '' : 'none';
+        });
+        grid.dataset.collapsed = String(!show);
+        updateShowMoreButtons();
+      }
+
+      function updateShowMoreButtons() {
+        const hiddenNews = getHiddenNews(); // Get fresh hidden news set
+        isAdmin = isAdminUser(); // Check admin status fresh
+        const isCollapsed = grid.dataset.collapsed === 'true';
+        
+        // Filter the 'extraCards' to see if any are allowed to be shown
+        const availableMoreCards = extraCards.filter(card => {
+          const newsId = card.getAttribute('data-news-id');
+          
+          // If user is NOT admin, and this specific card is hidden by admin, don't count it
+          if (!isAdmin && newsId && hiddenNews.has(String(newsId))) {
+            return false;
+          }
+          return true;
+        });
+        
+        const hasMore = availableMoreCards.length > 0;
+        
+        // Show 'Show more' if we have hidden content and the grid is currently collapsed
+        btnMore.hidden = !hasMore || !isCollapsed;
+        
+        // Show 'Show less' if we have hidden content and the grid is currently expanded
+        btnLess.hidden = !hasMore || isCollapsed;
+      }
+
+      btnMore.addEventListener('click', function () { showExtras(true); });
+      btnLess.addEventListener('click', function () { showExtras(false); });
+
+      // Make news cards clickable (but not the hide button)
+      allCards.forEach(card => {
+        const href = card.getAttribute('data-href') || '';
+        card.setAttribute('role', 'link');
+        card.tabIndex = 0;
+        
+        function go(e) {
+          // Don't navigate if clicking the hide button
+          if (e.target.closest('.news-card__hide-btn')) return;
+          if (href) window.location.href = href;
+        }
+        
+        card.addEventListener('click', go);
+        card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(e); } });
+      });
+
+      // Make hero cards clickable too
+      const heroCards = Array.from(document.querySelectorAll('.hero-card'));
+      heroCards.forEach(card => {
+        const href = card.getAttribute('data-href') || '';
+        if (!href) return; // leave inert until you add a URL
+        card.setAttribute('role', 'link');
+        card.tabIndex = 0;
+        function go() { if (href) window.location.href = href; }
+        card.addEventListener('click', go);
+        card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+        card.style.cursor = 'pointer';
+      });
+
+      // Initialize
+      filterHiddenNews();
+      setupAdminButtons();
+      
+      // Initialize show/hide state based on admin status
+      isAdmin = isAdminUser();
+      if (isAdmin) {
+        showExtras(true);
+      } else {
+        showExtras(false);
+      }
+      
+      // Re-check admin status periodically
+      setInterval(() => {
+        const wasAdmin = isAdmin;
+        const nowAdmin = isAdminUser();
+        if (wasAdmin !== nowAdmin) {
+          filterHiddenNews();
+          setupAdminButtons();
+          if (nowAdmin) {
+            showExtras(true);
+          } else {
+            showExtras(false);
+          }
+        }
+      }, 1000);
+    })();
+  </script>
+  <script defer src="Rivals.js"></script>
+  
+  <!-- React and ReactDOM for Music Player (load first) -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  
+  <!-- YouTube IFrame Player API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  
+  <!-- Music Player Styles and Script -->
+  <link rel="stylesheet" href="music-player.css" />
+  <script defer src="music-player.js"></script>
+</body>
+</html>
+
+

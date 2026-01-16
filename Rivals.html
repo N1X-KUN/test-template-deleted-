@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#0f0f16" />
+  <meta name="description" content="Marvel Rivals — a fast, cinematic hero shooter showcase with dynamic UI, parallax hero, scroll reveals, tilt cards, and a smooth maps carousel." />
+  <title>Marvel Rivals</title>
+  <link rel="icon" href="Images/Rival.png" type="image/x-icon" />
+  <link rel="stylesheet" href="Rivals.css" />
+</head>
+<body>
+  <!-- 
+    # PAGE LOADER SECTION
+    This is the loading screen that appears when navigating between pages.
+    Shows the Marvel Rivals logo with "RIVALING..." text and a progress bar.
+    The loader is controlled by Rivals.js and appears for 3 seconds during page transitions.
+  -->
+  <div id="page-loader" class="page-loader">
+    <div class="loader-content">
+      <div class="loader-logo">
+        <img src="Images/Icon Logo.svg" alt="Marvel Rivals" />
+      </div>
+      <div class="loader-text">
+        RIVALING<span class="loader-dots"></span>
+      </div>
+      <div class="loader-progress">
+        <div class="loader-progress-bar"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Skip to main content link for accessibility -->
+  <a class="sr-only" href="#main">Skip to content</a>
+  
+  <!-- 
+    # HEADER / NAVIGATION SECTION
+    This is the main site header that stays fixed at the top when scrolling.
+    Contains the Rivals logo, navigation links (Patch Notes, Rival Cards, Spawn Chats),
+    login button, and the "Play Now" download button.
+    On mobile, the hamburger menu opens a drawer with the same navigation options.
+  -->
+  <!-- Header Section -->
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="Rivals.html" aria-label="Marvel Rivals Home">
+        <img src="Images/Icon Logo.svg" alt="Brand" style="height:28px;width:auto" />
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="Patch.html">Patch Notes</a>
+        <a href="Hero.html">Rival Cards</a>
+        <a href="Community.html">Spawn Chats</a>
+        <a href="#" aria-label="Log in" title="Log in" class="login-icon" id="login-btn">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <a class="cta" data-magnetic href="Videos/RivalsLauncher.mp4" download="MarvelRivals_Gameplay.mp4"><span class="shine" aria-hidden="true"></span>Play Now</a>
+      </nav>
+      <button class="hamburger" aria-controls="mobile-drawer" aria-expanded="false" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+    <div class="drawer" id="mobile-drawer" hidden>
+      <div class="drawer-panel" role="dialog" aria-label="Mobile Menu">
+        <a href="Patch.html">Patch Notes</a>
+        <a href="Hero.html">Rival Cards</a>
+        <a href="Community.html">Spawn Chats</a>
+        <a href="#" class="btn" id="mobile-login-btn">Log in</a>
+        <a class="cta" data-magnetic href="Videos/RivalsLauncher.mp4" download="MarvelRivals_Gameplay.mp4"><span class="shine" aria-hidden="true"></span>Play Now</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- 
+      # HERO SECTION
+      This is the background banner at the top of the homepage with the background video.
+      Shows the game title "Come And Meet Your Rival" with a tagline and download/watch trailer buttons.
+    -->
+    <section class="hero" aria-label="Hero">
+    <!-- Background video that plays on loop which starts fullscreen and then transitions to background banner -->
+    <video id="hero-video" class="video-intro" autoplay muted playsinline loop>
+      <source src="Videos/BannerVid.mp4" type="video/mp4">
+    </video>
+
+      <!-- Animated starfield background effect -->
+      <div class="stars" aria-hidden="true"></div>
+      <!-- Floating colored orbs that move with parallax effect based on mouse movement.. because I dont know how to make lightning orbs-->
+      <div class="hero-art" aria-hidden="true">
+        <div class="orb red" data-parallax data-depth="0.06"></div>
+        <div class="orb gold" data-parallax data-depth="0.08"></div>
+        <div class="orb blue" data-parallax data-depth="0.04"></div>
+      </div>
+      <div class="container hero-inner content" data-reveal>
+        <span class="eyebrow"><span class="dot"></span> Live: Season Zenith 3.5</span>
+        <h1>Come And Meet Your <span class="accent">Rival</span></h1>
+        <p class="subhead">This Game's only enemy is your own allies. GG NO HEALS!</p>
+        <div class="hero-cta">
+          <a class="cta" data-magnetic href="#download"><span class="shine" aria-hidden="true"></span>Download</a>
+          <a class="btn" href="#trailer" id="watch-trailer-btn">Watch Trailer</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 
+      # CORE GAMEPLAY FEATURES SECTION
+      Shows three main feature cards: Each card has an image that changes on hover and explains a key gameplay feature.
+      The cards have a popup effect when you hover over them.
+    -->
+    <section id="features" class="container section-sep" aria-labelledby="features-title">
+      <div class="section-head">
+        <h2 id="features-title">Core Gameplays</h2>
+        <p>Yes we know this is a copy of many hero shooter game but we got cakes.</p>
+      </div>
+      <div class="features">
+        <article class="feature" data-reveal>
+          <!-- Image container that swaps between default and hover images on mouse over -->
+          <div class="media">
+            <img src="Images/TeamUp.jpg" alt="Heroes clashing in 6v6" class="feature-img-default" />
+            <img src="Images/Teams.jpg" alt="Heroes clashing in 6v6" class="feature-img-hover" />
+          </div>
+          <div class="copy">
+            <span class="badge">6v6 Hero Shooter</span>
+            <h3>Team Up. Counter. Dominate.</h3>
+            <p>Pick unique roles and combine abilities for explosive synergy. Momentum swings with coordinated plays.</p>
+          </div>
+        </article>
+        <article class="feature" data-reveal>
+          <div class="media">
+            <img src="Images/JumpIN.jpg" alt="Free-to-play action" class="feature-img-default" />
+            <img src="Images/JumpOut.jpg" alt="Free-to-play action" class="feature-img-hover" />
+          </div>
+          <div class="copy">
+            <span class="badge">Free To Play</span>
+            <h3>Jump In Instantly</h3>
+            <p>Fair progression and seasonal rewards. Play casually or climb competitive ladders. And more yaps to test this out ok</p>
+          </div>
+        </article>
+        <article class="feature" data-reveal>
+          <div class="media">
+            <img src="Images/Maps.jpg" alt="Destructible arenas" class="feature-img-default" />
+            <img src="Images/Map.jpg" alt="Destructible arenas" class="feature-img-hover" />
+          </div>
+          <div class="copy">
+            <span class="badge">Dynamic Maps</span>
+            <h3>Shape The Battlefield</h3>
+            <p>Open flanks and reveal new sightlines mid-round with reactive environments and shifting objectives.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- 
+      # MAPS SHOWCASE SECTION
+      This is a carousel/slideshow that displays different game maps, which should be more maps but I am very lazy.
+      It is a carousel auto-plays and cycles through all available maps.
+    -->
+    <section id="maps" class="container section-sep" aria-labelledby="maps-title">
+      <div class="section-head">
+        <h2 id="maps-title">Maps Showcase</h2>
+        <p> There should be more here but I am VERY lazy.</p>
+      </div>
+      <div class="maps-carousel" data-reveal id="maps-carousel">
+        <div class="carousel-container">
+          <div class="carousel-track" id="carousel-track">
+            <div class="carousel-slide active" data-slide="0">
+              <img src="Images/KunLun.jpg" alt="Golden palace under vast tree roots" />
+              <div class="carousel-meta">
+                <h4>K'un-Lun Heart of Heaven</h4>
+                <p>Sanctuary paths and royal battlements entwined with the World Tree.</p>
+              </div>
+            </div>
+            <div class="carousel-slide" data-slide="1">
+              <img src="Images/DraculaCastle.jpg" alt="Gothic city park shrouded in moonless night" />
+              <div class="carousel-meta">
+                <h4>Empire of Night</h4>
+                <p>Midtown under eclipse—siege routes, shadow vaults, and arcane wards.</p>
+              </div>
+            </div>
+            <div class="carousel-slide" data-slide="2">
+              <img src="Images/KlynTar.jpg" alt="Alien landscape with colossal husk and vivid clouds" />
+              <div class="carousel-meta">
+                <h4>Celestial Husk</h4>
+                <p>Shifting terrain over ancient remains—adapt or be swallowed whole.</p>
+              </div>
+            </div>
+            <div class="carousel-slide" data-slide="3">
+              <img src="Images/SpiderMap.jpg" alt="Neon megacity skyline at night" />
+              <div class="carousel-meta">
+                <h4>Skyline 2099</h4>
+                <p>Sleek rooftops and cable lines—vertical play with momentum lanes.</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Navigation buttons to manually go to previous/next map in the carousel -->
+          <button class="carousel-btn carousel-prev" id="carousel-prev" aria-label="Previous map">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 18l-6-6 6-6"/>
+            </svg>
+          </button>
+          <button class="carousel-btn carousel-next" id="carousel-next" aria-label="Next map">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18l6-6-6-6"/>
+            </svg>
+          </button>
+          
+          <!-- Dot navigation indicators - click any dot to jump directly to that map slide -->
+          <div class="carousel-dots" id="carousel-dots">
+            <button class="carousel-dot active" data-slide="0" aria-label="Go to slide 1"></button>
+            <button class="carousel-dot" data-slide="1" aria-label="Go to slide 2"></button>
+            <button class="carousel-dot" data-slide="2" aria-label="Go to slide 3"></button>
+            <button class="carousel-dot" data-slide="3" aria-label="Go to slide 4"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 
+      # LATEST UPDATES / NEWS SECTION
+      Displays a grid of news cards showing recent game updates, patch notes, and events.
+      At the bottom there's a "View More Patch" button that links to the Patch Notes page.
+    -->
+    <section id="news" class="container" aria-labelledby="news-title">
+      <div class="section-head">
+        <h2 id="news-title">Latest Updates</h2>
+        <p>This is totaly outdated but I am too lazy to update it.</p>
+      </div>
+      <div class="news">
+        <article class="news-card" data-reveal>
+          <div style="background:url('Images/New1.jpg') center/cover"></div>
+          <div class="news-body">
+            <h4>Patch Notes: Season 4.5 Arrives</h4>
+            <p>In Season 4.5, Daredevil is set to unleash the beast!</p>
+          </div>
+        </article>
+        <article class="news-card" data-reveal>
+          <div style="background:url('Images/New2.jpg') center/cover"></div>
+          <div class="news-body">
+            <h4>Hero Balance Adjustments</h4>
+            <p>The Marvel Rivals universe never stands still! With new buffs, nerfs, and team-up tweaks, the meta is evolving once again. Suit up and see which heroes are rising and who's getting knocked down a peg!</p>
+          </div>
+        </article>
+        <article class="news-card" data-reveal>
+          <div style="background:url('Images/New3.jpg') center/cover"></div>
+          <div class="news-body">
+            <h4>New Additions and Optimizations</h4>
+            <p>We're thrilled to announce the upcoming patch drops on October 2nd, 2025, at 09:00:00 (UTC)! This update will be deployed seamlessly, with no server downtime required! Simply log in after the update and jump right back into the action.</p>
+          </div>
+        </article>
+        <article class="news-card" data-reveal>
+          <div style="background:url('Images/New4.png') center/cover"></div>
+          <div class="news-body">
+            <h4>New Event: Shou-Lao's Blessing</h4>
+            <p>The long silence has ended, the Immortal Dragon Shou-Lao has awakened! His glory and blessings await every brave warrior! Complete Shou-Lao's Blessing for a FREE Costume Coin, 500 Units, and 500 Unstable Molecules!</p>
+          </div>
+        </article>
+        <article class="news-card" data-reveal>
+          <div style="background:url('Images/New5.png') center/cover"></div>
+          <div class="news-body">
+            <h4>New Event: SUMMER SPECIAL VOL. 2</h4>
+            <p>The highly anticipated Summer Special Vol. 2 is about to heat things up! Level up the event to unlock FREE rewards like The Thing - Rocky Tide! Upgrade to the Premium Edition and unlock even more exclusive rewards, such as Mantis - Oceanic Harmony and Human Torch - Sunny Sizzler costumes.</p>
+          </div>
+        </article>
+        <article class="news-card" data-reveal>
+          <div style="background:url('Images/New6.jpg') center/cover"></div>
+          <div class="news-body">
+            <h4>Season 3.5 — Winners Event</h4>
+            <p>Congratulations to all the winners — your content cut through the darkness and earned a place in the spotlight. Thank you to everyone who participated in the event. We can’t wait to see what you create next.</p>
+          </div>
+        </article>
+        <article class="news-card" data-reveal>
+          <div style="background:url('Images/New8.png') center/cover"></div>
+          <div class="news-body">
+            <h4>Patch Notes: Season 4 Heart of the Dragon</h4>
+            <p>Season 4 is upon us, and Angela joins the fray in the Heart of Heaven! The update begins on September 12th, 2025, at 09:00:00 (UTC), with estimated maintenance lasting 2–3 hours.</p>
+          </div>
+        </article>
+        <article class="news-card" data-reveal>
+          <div style="background:url('Images/new9.jpg') center/cover"></div>
+          <div class="news-body">
+            <h4>S3 Content Incentive Event</h4>
+            <p>We're excited to unveil the winners of the Marvel Rivals Season 3 Content Incentive Event! Thank you to everyone who participated, and stay tuned for more opportunities to showcase your brilliance in upcoming events!</p>
+          </div>
+        </article>
+      </div>
+      <div class="news-cta" data-reveal>
+        <a href="Patch.html" class="patch-btn">
+          <span class="btn-icon">→</span>
+          View More Patch
+        </a>
+      </div>
+    </section>
+
+    <!-- 
+      # DOWNLOAD / PLATFORM LINKS SECTION
+      Shows "Join The Rivals Now" with links to download on Steam, Epic Games, and Windows Store.
+      Has a background video playing behind the content for visual appeal.
+    -->
+    <section id="download" class="section-sep full-bleed" aria-labelledby="download-title">
+      <div class="cta-download" data-reveal>
+        <div class="bg"><video src="Videos/PlayVid.mp4" autoplay muted loop playsinline></video></div>
+        <div class="overlay"></div>
+        <div class="inner">
+          <h2 id="download-title">Join The Rivals Now</h2>
+          <p class="subhead">Choose your platform. Dude start working on your links haha.</p>
+          <div class="platforms">
+            <a href="https://store.steampowered.com/app/2767030/Marvel_Rivals" target="_blank" rel="noopener" class="platform-link">
+              <img src="Images/steam.png" alt="Steam" />
+            </a>
+            <a href="https://store.epicgames.com/en-US/p/marvel-rivals-182004" target="_blank" rel="noopener" class="platform-link">
+              <img src="Images/epicgames.png" alt="Epic Games" />
+            </a>
+            <a href="https://store.loadingbay.com/detail/marvel-rivals" target="_blank" rel="noopener" class="platform-link">
+              <img src="Images/windows.png" alt="Windows" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 
+    # FOOTER SECTION
+    Basic footer contents here with terms and conditions, etc have a yellow glow
+     effect on hover to show they're clickable so theres some interaction.
+  -->
+  <footer>
+    <div class="container foot-min">
+      <div>
+        <div class="foot-links">
+          <a href="https://protocol.unisdk.easebar.com/release/latest_v487.html">Terms & Conditions</a><span class="sep">|</span>
+          <a href="https://protocol.unisdk.easebar.com/release/latest_v475.html">Privacy Policy</a><span class="sep">|</span>
+          <a href="https://www.marvelrivals.com/guide/server">FAQ</a><span class="sep">|</span>
+          <a href="https://act.neteasegames.com/activity/3sSWzy">Perks</a><span class="sep">|</span>
+          <a href="https://www.marvelrivals.com/creator_program.html">PartnerHub</a>
+        </div>
+        <div class="foot-meta">Copyright © 2026 Rivals . Yippie New Year!</div>
+        <div class="foot-badges">
+          <img src="Images/NetEase.png" alt="Compliance badge" class="badge-img" />
+          <img src="Images/Marvel Logo.png" alt="Age rating" class="badge-img" />
+        </div>
+      </div>
+      <div class="foot-right">
+        <div class="foot-logo" aria-label="Company logo">
+          <img src="Images/TeenEsp.png" alt="Company logo" />
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 
+    # LOGIN / REGISTRATION POPUP MODAL
+    This is a split-screen modal that appears when users click the login button.
+    Left side: Registration form where new users can create an account.
+    Right side: Login form for existing users and a "Continue As Guest" button.
+    All login&registration logic is handled by Rivals.js so dont worry about that.
+  -->
+  <div id="login-popup" class="login-popup" hidden>
+    <div class="login-overlay"></div>
+    <div class="login-modal">
+      <button class="login-close" aria-label="Close login">&times;</button>
+      
+      <!-- Split Screen Layout -->
+      <div class="login-modal-content">
+        <!-- Left side of login popup: New user registration form -->
+        <div class="login-section registration-section">
+          <div class="login-section-header">
+            <div class="login-logo-container">
+              <img src="Images/Rival.png" alt="Marvel Rivals" class="login-logo-image" />
+              <div class="login-logo-text">
+                <span class="login-logo-brand">Account</span>
+                <span class="login-logo-name">Marvel Rivals</span>
+              </div>
+            </div>
+          </div>
+
+          <h2 class="login-section-title">Registration</h2>
+
+          <form id="popup-registrationForm" class="login-auth-form">
+            <div class="login-form-group">
+              <input type="email" id="popup-reg-email" placeholder="E-mail" required>
+            </div>
+            <div class="login-form-group">
+              <input type="text" id="popup-reg-nickname" placeholder="Nickname" required>
+            </div>
+            <div class="login-form-group login-password-group">
+              <input type="password" id="popup-reg-password" placeholder="Password" required>
+              <button type="button" class="password-toggle" id="popup-reg-password-toggle" aria-label="Toggle password visibility">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                  <line x1="1" y1="1" x2="23" y2="23"></line>
+                </svg>
+              </button>
+            </div>
+            <div class="login-form-group login-password-group">
+              <input type="password" id="popup-reg-password-repeat" placeholder="Repeat the password" required>
+              <button type="button" class="password-toggle" id="popup-reg-password-repeat-toggle" aria-label="Toggle password visibility">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                  <line x1="1" y1="1" x2="23" y2="23"></line>
+                </svg>
+              </button>
+            </div>
+            <div class="login-form-group login-captcha-group">
+              <input type="text" id="popup-reg-captcha" placeholder="Enter the code" required>
+              <div class="login-captcha-display">
+                <span id="popup-captcha-text">694</span>
+                <span class="login-captcha-lang">/en</span>
+                <button type="button" class="login-captcha-refresh" id="popup-refreshCaptcha" aria-label="Refresh captcha">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                    <path d="M21 3v5h-5"/>
+                    <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                    <path d="M3 21v-5h5"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="login-form-group login-checkbox-group">
+              <label class="login-checkbox-label">
+                <input type="checkbox" id="popup-reg-terms" required>
+                <span>I accept <a href="#" class="login-link">Terms of Service</a> and <a href="#" class="login-link">Privacy Policy</a>.</span>
+              </label>
+            </div>
+            <button type="submit" class="login-submit-btn" id="popup-reg-submit-btn" disabled>CREATE AN ACCOUNT</button>
+          </form>
+
+        </div>
+
+        <!-- Right side of login popup: Existing user login and guest access -->
+        <div class="login-section login-right-section">
+          <video class="login-right-section__video" autoplay muted loop playsinline aria-hidden="true">
+            <source src="Videos/LunaDanceVid.mp4" type="video/mp4">
+          </video>
+          <div class="login-right-content">
+            <!-- Shows current guest login status if user is logged in as guest -->
+            <div id="guest-status" class="guest-status" style="display: none;">
+              <p class="guest-status-text">Currently logged in as <strong>Guest</strong></p>
+              <button class="guest-logout-btn" id="guest-logout-btn">Logout Guest</button>
+            </div>
+            
+            <p class="login-description" id="login-description">Already played Rival? Save your progress!</p>
+            <button class="login-social-login-btn" id="popup-guestLogin">
+              <div class="login-social-icon">👤</div>
+              <span>Continue As Guest</span>
+            </button>
+            <!-- Expandable section that reveals the login form when clicked -->
+            <div class="login-expandable-section">
+              <button class="login-expand-btn" id="popup-expandLink">
+                <span>Played before but haven't linked an email?</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M6 9l6 6 6-6"/>
+                </svg>
+              </button>
+              <div class="login-expand-content" id="popup-expandContent" hidden>
+                <form id="popup-loginForm" class="login-auth-form">
+                  <div class="login-form-group">
+                    <input type="email" id="popup-login-email" placeholder="E-mail" required>
+                  </div>
+                  <div class="login-form-group login-password-group">
+                    <input type="password" id="popup-login-password" placeholder="Password" required>
+                    <button type="button" class="password-toggle" id="popup-login-password-toggle" aria-label="Toggle password visibility">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                      </svg>
+                    </button>
+                  </div>
+                  <button type="submit" class="login-submit-btn">LOG IN</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 
+    # MUSIC PLAYER SETUP
+    These React scripts are loaded first because the music player is built with React,
+    the music player appears as a floating button in the bottom-left corner which expands
+    into a full player panel when hovered. It plays YouTube videos as music and persists
+    across page navigations. The actual music player code is in music-player.js.
+  -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  
+  <!-- 
+    # MAIN JAVASCRIPT FILE
+    This file handles all the homepage functionality:
+    - Page loader animations
+    - Login/registration popup
+    - Mobile menu drawer
+    - YouTube trailer modal
+    - Scroll animations and parallax effects
+    - Hero video transitions
+  -->
+  <script defer src="Rivals.js"></script>
+  
+  <!-- 
+    # YOUTUBE TRAILER MODAL
+    This modal pops up when users click "Watch Trailer" on the homepage.
+    It embeds a YouTube video player using the YouTube IFrame API.
+  -->
+  <div id="trailer-modal" class="trailer-modal" hidden>
+    <div class="trailer-modal-backdrop" id="trailer-modal-backdrop"></div>
+    <div class="trailer-modal-content">
+      <button class="trailer-modal-close" id="trailer-modal-close" aria-label="Close trailer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      <div class="trailer-video-container">
+        <div id="trailer-player"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 
+    # YOUTUBE API SCRIPT
+    Required for the YouTube trailer modal to work. This loads the YouTube IFrame Player API
+    which allows us to embed and control YouTube videos on the page.
+  -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  
+  <!-- 
+    # MUSIC PLAYER STYLES AND SCRIPT
+    The music-player.js file contains all the React component code for the music player,
+    including playlist management, shuffle functionality, and state persistence across pages.
+  -->
+  <link rel="stylesheet" href="music-player.css" />
+  <script defer src="music-player.js"></script>
+</body>
+</html>
