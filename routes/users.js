@@ -5,7 +5,7 @@ const { sendWelcomeEmail } = require('../utils/emailService');
 
 function getAdminEmail() {
     const configuredAdminEmail = (process.env.ADMIN_EMAIL || '').trim().toLowerCase();
-    const fallbackAdminEmail = 'missrafia67@gmail.com';
+    const fallbackAdminEmail = 'admin67@gmail.com';
     return configuredAdminEmail || fallbackAdminEmail;
 }
 
