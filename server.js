@@ -76,7 +76,7 @@ app.post('/login', async (req, res) => {
     // Optional: auto-promote a configured admin account (email-based) so the "special account"
     // consistently gets the admin view without manual DB edits.
     const configuredAdminEmail = (process.env.ADMIN_EMAIL || '').trim().toLowerCase();
-    const fallbackAdminEmail = 'missrafia67@gmail.com';
+    const fallbackAdminEmail = 'admin67@gmail.com';
     const adminEmail = configuredAdminEmail || fallbackAdminEmail;
 
     if (adminEmail && String(user.email || '').toLowerCase() === adminEmail && user.role !== 'admin') {
@@ -154,4 +154,5 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
   console.log(`🌐 Also accessible at http://127.0.0.1:${PORT}`);
 });
+
 
